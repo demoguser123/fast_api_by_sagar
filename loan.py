@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-
 # here the client is sending the complete json modules with all the features.
 class LoanApplication(BaseModel):
     age: int
@@ -26,3 +25,4 @@ def predict_loan(application: LoanApplication):
         "application_age": application.age, 
         "decision": decision
     }
+
