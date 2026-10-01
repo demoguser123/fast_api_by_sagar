@@ -1,48 +1,3 @@
-# Phase 5 Exception Handling and Error Handling.
-
-- If something goes wrong in any code or anywhere which error it should give and what it will do then will not be decided by python. It will be decided by us.
-
-- without error handling it might crash the thing or get unexpected error.
-
-- And for that we will use the <span style = color:#800020> **"HTTP Exception"** </span>
-
-- api will made a request it will process it and if it's having any error then it will give the error message and the code too.
-
-`main_s.py`
-
-```python
-from fastapi import FastAPI, HTTPException
-
-app = FastAPI()
-
-students = {
-    "S001": {"name":"Ravi", "marks": 85, "grade":"A"},
-    "S002": {"name":"Sagar", "marks": 72, "grade":"B"},
-    "S003": {"name":"Arjun", "marks": 91, "grade":"A+"}
-}
-
-@app.get("/student/{student_id}")
-def get_student(student_id: str):
-
-    if student_id not in students:
-        raise HTTPException(
-            status_code = 404,
-            detail = f"student with ID {student_id} does not exists"
-        )
-
-    return students[student_id]
-
-
-```
-
-![alt text](image-9.png)
-
-## A Exception handling service with the get, post both.
-
-`Main_s.py`
-
-```python
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -113,11 +68,3 @@ def submit_marks(submission: MarksSubmission):
             status_code=500,
             detail=f"Something went wrong from our side: {str(e)}"
         )
-```
-
-![alt text](image-10.png)
-
-![alt text](image-11.png)
-
-- for more we can go to the "/docs". check the get and can submit our things in the post. and can see the valid error and best error handling we can see there.
-
